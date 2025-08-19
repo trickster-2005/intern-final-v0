@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Handsontable CSV 編輯器）</title>
+    <!-- Handsontable CE（僅供非商業與評估用途） -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/handsontable@14.3.0/dist/handsontable.full.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/handsontable@14.3.0/dist/handsontable.full.min.js"></script>
+    <!-- PapaParse：解析/輸出 CSV -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="coding.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="title">Handsontable CSV 編輯器</div>
+      <div class="toolbar">
+        <label class="btn ghost"
+          >上傳 CSV<input
+            id="fileInput"
+            type="file"
+            accept=".csv,text/csv"
+            style="display: none"
+        /></label>
+        <div id="dropzone" class="dropzone" title="拖拉 CSV 到此">
+          拖拉 CSV 檔到此
+        </div>
+        <button id="pasteCsvBtn" class="btn">貼上 CSV 文字</button>
+        <button id="blankBtn" class="btn">建立空白表格</button>
+        <button id="addRow" class="btn">新增列</button>
+        <button id="removeRow" class="btn">刪除列</button>
+        <button id="addCol" class="btn">新增欄位</button>
+        <button id="removeCol" class="btn">刪除欄位</button>
+        <button id="exportCsv" class="btn">匯出 CSV</button>
+        <button id="exportJson" class="btn">匯出 JSON</button>
+        <button id="darkMode" class="btn">深色模式</button>
+        <!-- <button id="visualizeBtn" class="btn">視覺化</button> -->
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="hint">
+        提示：直接在表格中複製/貼上即可。欄名若為「年齡」「日期」「類別」會自動套用型別與驗證。每欄右上角的下拉選單可進行
+        <b>篩選</b>；點欄標題可 <b>排序</b>。
+      </div>
+      <div id="hot"></div>
+    </div>
+
+    <!-- 貼上 CSV 對話框 -->
+    <dialog id="pasteDlg">
+      <div class="dlg-head">
+        <span>貼上 CSV 文字</span>
+        <button id="closeDlg" class="btn">✕</button>
+      </div>
+      <div class="dlg-body">
+        <p class="hint">
+          將 CSV 內容貼到下方，會自動解析為表格。預設第一列視為表頭。
+        </p>
+        <textarea
+          id="pasteArea"
+          placeholder="name,age,date,gender\nAlice,23,2025-01-01,female"
+        ></textarea>
+        <label class="checkbox"
+          ><input type="checkbox" id="noHeader" /> CSV 沒有表頭</label
+        >
+      </div>
+      <div class="dlg-actions">
+        <button id="parsePasted" class="btn primary">匯入</button>
+        <button id="cancelDlg" class="btn">取消</button>
+      </div>
+    </dialog>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    
+    <script src="tree.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
