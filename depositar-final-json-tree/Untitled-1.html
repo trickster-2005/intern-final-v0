@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <title>D3 JSON 心智圖 編輯 & 下載</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #ccc;
+        overflow: hidden;
+      }
+      #upload {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        /* width: 150px; */
+        z-index: 10;
+      }
+      #downloadBtn {
+        position: fixed;
+        width: 150px;
+        top: 50px;
+        left: 10px;
+        z-index: 10;
+      }
+      svg {
+        width: 100vw;
+        height: 100vh;
+        cursor: grab;
+      }
+      .node circle {
+        fill: #69b3a2;
+        cursor: pointer;
+      }
+      .node text {
+        font-size: 12px;
+        user-select: none;
+      }
+      .link {
+        fill: none;
+        stroke: #555;
+        stroke-width: 2px;
+      }
+      .node {
+        display: inline-block;
+        margin: 0 55px; /* 基本間距 */
+        min-width: 0px; /* 最小寬度 */
+        max-width: 190px; /* 最大寬度 */
+        white-space: nowrap;
+        text-align: center;
+      }
+
+      /* /* 當節點數多時減小間距，假設用 JS 動態給 class */
+  
+    </style>
+  </head>
+  <body>
+    <input type="file" id="upload" accept=".json" />
+    <button id="downloadBtn">下載 JSON</button>
+    <svg></svg>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="tree.js"></script>
+  </body>
+</html>
